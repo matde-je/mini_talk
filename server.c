@@ -6,9 +6,15 @@
 /*   By: matde-je <matde-je@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:10:21 by matde-je          #+#    #+#             */
-/*   Updated: 2023/06/15 18:10:47 by matde-je         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:36:17 by matde-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_talk.h"
 
+int	main(void)
+{
+	put_str_fd("Server PID: ", 1);
+	put_nbr_fd(getpid(), 1);
+	put_char_fd('\n', 1);
+}
