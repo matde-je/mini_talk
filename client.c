@@ -6,56 +6,42 @@
 /*   By: matde-je <matde-je@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 18:10:15 by matde-je          #+#    #+#             */
-/*   Updated: 2023/06/20 16:42:08 by matde-je         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:41:27 by matde-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_talk.h"
 
-void	int_to_bit(int str, int pid)
+void	ft_kill(int pid, char *str)
 {
-	int	control;
-	int	counter;
+	int		i;
+	char	c;
 
-	control = 128;
-	counter = 0;
-	while (counter < 8)
+	while (*str)
 	{
-		if (str < control)
+		i = 8;
+		c = *str++;
+		while (i--)
 		{
-			kill(pid, SIGUSR1);
-			usleep(80);
+			if (c >> i & 1)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			usleep(50);
 		}
-		else
-		{
-			str -= control;
-			kill(pid, SIGUSR2);
-			usleep(80);
-		}
-		counter++;
-		control /= 2;
 	}
-}
-
-void	error(void)
-{
-	write(1, "Error, invalid Parameters", 25);
-	exit(0);
+	i = 8;
+	while (i--)
+	{
+		kill(pid, SIGUSR2);
+		usleep(50);
+	}
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	pid;
-
 	if (argc != 3)
-		error();
-	pid = atoi(argv[1]);
-	i = 0;
-	while (argv[2][i])
-	{
-		int_to_bit((int) argv[2][i], pid);
-		i++;
-	}
-	int_to_bit(0, pid);
+		return (0);
+	ft_kill(ft_atoi(argv[1]), argv[2]);
+	ft_kill(ft_atoi(argv[1]), "\n");
 }
