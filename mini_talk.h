@@ -20,5 +20,4 @@
 # include "./printf/ft_printf.h"
 # include <stdio.h>
 
-int	ft_atoi(const char *str);
 #endif

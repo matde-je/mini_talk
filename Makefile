@@ -15,8 +15,8 @@ FLAG = -Wall -Wextra -Werror
 LIBFTPRINTF = printf
 
 all: $(NAME)
-		gcc $(FLAG) server.c $(NAME) -o server
-		gcc $(FLAG) client.c $(NAME) -o client
+		cc $(FLAG) server.c $(NAME) -o server
+		cc $(FLAG) client.c $(NAME) -o client
 
 $(NAME): $(LIBFTPRINTF)
 		make -C $(LIBFTPRINTF)
